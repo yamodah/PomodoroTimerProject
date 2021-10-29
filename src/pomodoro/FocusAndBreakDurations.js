@@ -70,6 +70,7 @@ export default function FocusAndBreakDurations({ focusDuration, setFocusDuration
                 onClick={handleIncreaseBreak}
                 disabled={isTimerRunning}
               >
+                
                 <span className="oi oi-plus" />
               </button>
             </div>
