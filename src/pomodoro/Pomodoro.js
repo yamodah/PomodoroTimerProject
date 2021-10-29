@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import classNames from "../utils/class-names";
+
+import FocusAndBreakDurations from "./FocusAndBreakDurations";
 import useInterval from "../utils/useInterval";
+import SessionTitleProgressBar from "./SessionTitleProgressBar"
+import PlayPauseButtons from "./PlayPauseButtons";
 
 // These functions are defined outside of the component to insure they do not have access to state
 // and are, therefore more likely to be pure.
@@ -54,8 +57,8 @@ function Pomodoro() {
   const [session, setSession] = useState(null);
 
   // ToDo: Allow the user to adjust the focus and break duration.
-  const focusDuration = 25;
-  const breakDuration = 5;
+  const [focusDuration, setFocusDuration] = useState(25)
+  const [breakDuration,setBreakDuration] = useState(5);
 //////////////////////////////////////////////////////////////////////////////////////
   /**
    * Custom hook that invokes the callback function every second
@@ -76,7 +79,10 @@ function Pomodoro() {
 
   return (
     <div className="pomodoro">
-      
+     <FocusAndBreakDurations focusDuration={focusDuration} setFocusDuration={setFocusDuration} breakDuration={breakDuration} setBreakDuration={setBreakDuration}/>
+     <PlayPauseButtons isTimerRunning={isTimerRunning} setIsTimerRunning={setIsTimerRunning} focusDuration={focusDuration} setSession={setSession}/>
+     <SessionTitleProgressBar session={session} focusDuration={focusDuration} breakDuration={breakDuration}/>
+     
 
       
     </div>

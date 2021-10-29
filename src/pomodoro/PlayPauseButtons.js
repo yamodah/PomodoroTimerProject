@@ -1,4 +1,6 @@
-function PlayPauseButtons (){
+import React from "react"
+import classNames from "../utils/class-names";
+export default function PlayPauseButtons ({isTimerRunning,setIsTimerRunning,setSession,focusDuration}){
   /**
    * Called whenever the play/pause button is clicked.
    */
@@ -21,7 +23,10 @@ function PlayPauseButtons (){
       return nextState;
     });
   }
-
+  const stopTimer = () => {
+    setIsTimerRunning(false)
+    setSession(null)
+  }
 
 
   return(<div className="row">
@@ -53,6 +58,8 @@ function PlayPauseButtons (){
         className="btn btn-secondary"
         data-testid="stop"
         title="Stop the session"
+        disabled = {isTimerRunning?false:true}
+        onClick={stopTimer}
       >
         <span className="oi oi-media-stop" />
       </button>
