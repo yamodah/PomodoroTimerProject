@@ -89,6 +89,7 @@ function Pomodoro() {
         setIsTimerRunning={setIsTimerRunning}
         focusDuration={focusDuration}
         setSession={setSession}
+        session={session}
       />
       <SessionTitleProgressBar
         session={session}
