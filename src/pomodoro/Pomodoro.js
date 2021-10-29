@@ -83,6 +83,7 @@ function Pomodoro() {
         setFocusDuration={setFocusDuration}
         breakDuration={breakDuration}
         setBreakDuration={setBreakDuration}
+        isTimerRunning={isTimerRunning}
       />
       <PlayPauseButtons
         isTimerRunning={isTimerRunning}

@@ -1,6 +1,6 @@
 import { minutesToDuration } from "../utils/duration";
 import React from "react";
-export default function FocusAndBreakDurations({ focusDuration, setFocusDuration, breakDuration,setBreakDuration,}) {
+export default function FocusAndBreakDurations({ focusDuration, setFocusDuration, breakDuration,setBreakDuration,isTimerRunning,}) {
   const handleDecreaseFocus = () => {
     if (focusDuration === 5) return;
     setFocusDuration((state) => state - 5);
@@ -31,6 +31,7 @@ export default function FocusAndBreakDurations({ focusDuration, setFocusDuration
               className="btn btn-secondary"
               data-testid="decrease-focus"
               onClick={handleDecreaseFocus}
+              disabled={isTimerRunning}
             >
               <span className="oi oi-minus" />
             </button>
@@ -39,6 +40,7 @@ export default function FocusAndBreakDurations({ focusDuration, setFocusDuration
               className="btn btn-secondary"
               data-testid="increase-focus"
               onClick={handleIncreaseFocus}
+              disabled={isTimerRunning}
             >
               <span className="oi oi-plus" />
             </button>
@@ -57,6 +59,7 @@ export default function FocusAndBreakDurations({ focusDuration, setFocusDuration
                 className="btn btn-secondary"
                 data-testid="decrease-break"
                 onClick={handleDecreaseBreak}
+                disabled={isTimerRunning}
               >
                 <span className="oi oi-minus" />
               </button>
@@ -65,6 +68,7 @@ export default function FocusAndBreakDurations({ focusDuration, setFocusDuration
                 className="btn btn-secondary"
                 data-testid="increase-break"
                 onClick={handleIncreaseBreak}
+                disabled={isTimerRunning}
               >
                 <span className="oi oi-plus" />
               </button>
