@@ -1,17 +1,18 @@
 import React from "react";
 import { minutesToDuration, secondsToDuration } from "../utils/duration";
 
-export default function SessionTitleProgressBar({session, focusDuration,breakDuration,}) {
+export default function SessionTitleProgressBar({session, focusDuration,breakDuration,isTimerRunning,}) {
   if (!session) return null;
 
-  const progressValue =
+  const progressValue =(
     session.label === "Focusing"
       ? ((focusDuration * 60 - session?.timeRemaining) / (focusDuration * 60)) *
         100
       : ((breakDuration * 60 - session?.timeRemaining) / (breakDuration * 60)) *
-        100;
+        100);
+  const pausedStatus = <h3>Paused</h3>
 
-  return (
+return (
     <div>
       {/* TODO: This area should show only when there is an active focus or break - i.e. the session is running or is paused */}
       <div className="row mb-2">
@@ -23,7 +24,7 @@ export default function SessionTitleProgressBar({session, focusDuration,breakDur
               ? `${minutesToDuration(focusDuration)} minutes`
               : `${minutesToDuration(breakDuration)} minutes`}
           </h2>
-          {/* TODO: Update message below correctly format the time remaining in the current session */}
+          {!isTimerRunning&&session&&pausedStatus}
           <p className="lead" data-testid="session-sub-title">
             {secondsToDuration(session?.timeRemaining)} remaining
           </p>

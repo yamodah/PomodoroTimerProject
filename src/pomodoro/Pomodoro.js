@@ -95,6 +95,7 @@ function Pomodoro() {
         session={session}
         focusDuration={focusDuration}
         breakDuration={breakDuration}
+        isTimerRunning={isTimerRunning}
       />
     </div>
   );
