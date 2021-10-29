@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import FocusAndBreakDurations from "./FocusAndBreakDurations";
 import useInterval from "../utils/useInterval";
-import SessionTitleProgressBar from "./SessionTitleProgressBar"
+import SessionTitleProgressBar from "./SessionTitleProgressBar";
 import PlayPauseButtons from "./PlayPauseButtons";
 
 // These functions are defined outside of the component to insure they do not have access to state
@@ -56,16 +56,16 @@ function Pomodoro() {
   // The current session - null where there is no session running
   const [session, setSession] = useState(null);
 
-  // ToDo: Allow the user to adjust the focus and break duration.
-  const [focusDuration, setFocusDuration] = useState(25)
-  const [breakDuration,setBreakDuration] = useState(5);
-//////////////////////////////////////////////////////////////////////////////////////
+
+  const [focusDuration, setFocusDuration] = useState(25);
+  const [breakDuration, setBreakDuration] = useState(5);
+  //////////////////////////////////////////////////////////////////////////////////////
   /**
    * Custom hook that invokes the callback function every second
    *
-   * NOTE: You will not need to make changes to the callback function
    */
-  useInterval(() => {
+  useInterval(
+    () => {
       if (session.timeRemaining === 0) {
         new Audio("https://bigsoundbank.com/UPLOAD/mp3/1482.mp3").play();
         return setSession(nextSession(focusDuration, breakDuration));
@@ -74,17 +74,27 @@ function Pomodoro() {
     },
     isTimerRunning ? 1000 : null
   );
-//////////////////////////////////////////////////////////////////////////////////////
- 
+  //////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <div className="pomodoro">
-     <FocusAndBreakDurations focusDuration={focusDuration} setFocusDuration={setFocusDuration} breakDuration={breakDuration} setBreakDuration={setBreakDuration}/>
-     <PlayPauseButtons isTimerRunning={isTimerRunning} setIsTimerRunning={setIsTimerRunning} focusDuration={focusDuration} setSession={setSession}/>
-     <SessionTitleProgressBar session={session} focusDuration={focusDuration} breakDuration={breakDuration}/>
-     
-
-      
+      <FocusAndBreakDurations
+        focusDuration={focusDuration}
+        setFocusDuration={setFocusDuration}
+        breakDuration={breakDuration}
+        setBreakDuration={setBreakDuration}
+      />
+      <PlayPauseButtons
+        isTimerRunning={isTimerRunning}
+        setIsTimerRunning={setIsTimerRunning}
+        focusDuration={focusDuration}
+        setSession={setSession}
+      />
+      <SessionTitleProgressBar
+        session={session}
+        focusDuration={focusDuration}
+        breakDuration={breakDuration}
+      />
     </div>
   );
 }
